@@ -1,0 +1,86 @@
+.persona-switcher {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.persona-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: left;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+}
+
+.persona-tab:hover {
+  background: var(--bg-tertiary);
+  border-color: rgba(255,255,255,0.1);
+  color: var(--text-primary);
+}
+
+/* Active state uses the persona's own color via CSS variable */
+.persona-tab.active {
+  background: color-mix(in srgb, var(--persona-color) 10%, transparent);
+  border-color: color-mix(in srgb, var(--persona-color) 40%, transparent);
+  color: var(--text-primary);
+}
+
+.persona-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--persona-color) 20%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--persona-color) 40%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.7rem;
+  color: var(--persona-color);
+  flex-shrink: 0;
+}
+
+.persona-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  overflow: hidden;
+}
+
+.persona-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: var(--font-display);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.persona-title {
+  font-size: 0.68rem;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.persona-tab.active .persona-title {
+  color: color-mix(in srgb, var(--persona-color) 70%, var(--text-secondary));
+}
+
+/* Mobile: stack vertically, show only avatars */
+@media (max-width: 600px) {
+  .persona-switcher { gap: 6px; }
+  .persona-tab { padding: 8px 10px; gap: 8px; }
+  .persona-info { display: none; }
+  .persona-tab { justify-content: center; }
+}
