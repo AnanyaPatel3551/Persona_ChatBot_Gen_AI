@@ -8,11 +8,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Initialize Grok client
-// Grok uses OpenAI-compatible API, just with a different baseURL
+// Initialize Groq client
+// Groq uses OpenAI-compatible API, just with a different baseURL
 const client = new OpenAI({
-  apiKey: process.env.GROK_API_KEY,
-  baseURL: "https://api.x.ai/v1",
+  apiKey: process.env.GROQ_API_KEY,
+  baseURL: "https://api.groq.com/openai/v1",
 });
 
 const personas = require("./personas");
@@ -49,9 +49,9 @@ app.post("/api/chat", async (req, res) => {
       { role: "user", content: message },
     ];
 
-    // Call Grok API
+    // Call Groq API
     const completion = await client.chat.completions.create({
-      model: "grok-3-mini",  // Free tier model
+      model: "llama-3.1-8b-instant",  // Groq model
       messages: messages,
       max_tokens: 1024,
     });
